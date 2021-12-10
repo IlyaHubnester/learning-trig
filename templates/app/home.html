@@ -1,0 +1,10 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'howto' %}" class="btn btn-primary">Как решать?</a>
+    <a href="{% url 'test' difficulty=0 %}" class="btn btn-primary">Тест (сложность 0)</a>
+    <a href="{% url 'test' difficulty=1 %}" class="btn btn-primary">Тест (сложность 1)</a>
+    <a href="{% url 'test' difficulty=2 %}" class="btn btn-primary">Тест (сложность 2)</a>
+</div>
+{% endblock %}

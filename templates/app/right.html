@@ -1,0 +1,11 @@
+{% extends "app/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <p>Ответ верный!</p>
+            <a class="btn btn-primary" href="{% url 'test' difficulty=view.kwargs.difficulty %}">Следующий вопрос</a>
+            </div>
+    </div>
+</div>
+{% endblock %}

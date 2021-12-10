@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+{% load shuffle %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                {{ object.text }}
+                <ul>
+                {% for answer in object.get_answers|shuffle %}
+                    <li><input id="choice" type="radio" value="{{ answer.id }}" name="choice">
+                        <label for="choice">{{ answer.text }}</label></li>
+                {% endfor %}
+                </ul>
+                <input class="btn btn-primary" type="submit" value="Ответить">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
