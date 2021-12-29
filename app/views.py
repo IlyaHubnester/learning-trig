@@ -47,10 +47,10 @@ class TestRandomView(TemplateView):
     template_name = 'app/random.html'
 
     def get_context_data(self, **kwargs):
-    context = super(AboutView, self).get_context_data(**kwargs)
-    ad = random.choice([('2', '1'), ('2', 'sqrt(2)'), ('', '1'), ('', '0'), ('2', 'sqrt(3)')])
-    f = random.choice(['sin', 'cos'])
-    c = random.randint(0, 10)
-    b = random.randint(0, 10)
-    context['equation'] = '\[' + ad[0] + f + ' (' + b + 'x + ' + c + ') = ' + ad[1] + '\]'
-    return context
+        context = super(AboutView, self).get_context_data(**kwargs)
+        ad = random.choice([('2', '1'), ('2', 'sqrt(2)'), ('', '1'), ('', '0'), ('2', 'sqrt(3)')])
+        f = random.choice(['sin', 'cos'])
+        c = random.randint(0, 10)
+        b = random.randint(0, 10)
+        context['equation'] = '\[' + ad[0] + f + ' (' + b + 'x + ' + c + ') = ' + ad[1] + '\]'
+        return context
