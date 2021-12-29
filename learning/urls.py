@@ -25,4 +25,5 @@ urlpatterns = [
     path('test/<int:difficulty>', TestView.as_view(), name='test'),
     path('test/<int:difficulty>/right', TestRightView.as_view(), name='right'),
     path('test/<int:difficulty>/wrong', TestWrongView.as_view(), name='wrong'),
+    path('test/random', TestRandomView.as_view(), name='random'),
 ]
