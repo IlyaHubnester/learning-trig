@@ -52,5 +52,5 @@ class TestRandomView(TemplateView):
         f = random.choice(['sin', 'cos'])
         c = random.randint(0, 10)
         b = random.randint(0, 10)
-        context['equation'] = '\[' + ad[0] + f + ' (' + b + 'x + ' + c + ') = ' + ad[1] + '\]'
+        context['equation'] = '\[' + ad[0] + f + ' (' + str(b) + 'x + ' + str(c) + ') = ' + ad[1] + '\]'
         return context
