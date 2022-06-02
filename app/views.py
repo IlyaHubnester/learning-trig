@@ -8,7 +8,7 @@ from app.models import Question, Answer
 
 def generate_simple(request):
     functions = {'cos': math.acos, 'sin':math.asin, 'tg':math.atan}
-    f = random.choice(functions.keys)
+    f = random.choice(list(functions.keys()))
     a = "{:.2f}".format(random.uniform(-1,1))
     solution = functions[f](a)
     return {"equation": "\[ "+ f + " = " + a + " \]", "solution": solution}
