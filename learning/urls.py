@@ -16,15 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from app.views import HomePageView, HowToView, TestView, TestRightView, TestWrongView, TestRandomView, generate_simple_view
+from app.views import HomePageView, HowToView, TestView, TestRightView, TestWrongView, TestRandomView, generate_simple_view, generate_odnorodn_view, HowTo2View
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePageView.as_view(), name='home'),
     path('howto', HowToView.as_view(), name='howto'),
+    path('howto2', HowTo2View.as_view(), name='howto2'),
     path('test/<int:difficulty>', TestView.as_view(), name='test'),
     path('test/<int:difficulty>/right', TestRightView.as_view(), name='right'),
     path('test/<int:difficulty>/wrong', TestWrongView.as_view(), name='wrong'),
     path('test/random', TestRandomView.as_view(), name='random'),
     path('generate-simple', generate_simple_view, name='generate_simple'),
+    path('generate-odnorodn', generate_odnorodn_view, name='generate_odnorodn'),
 ]

@@ -15,8 +15,26 @@ def generate_simple():
     solution = functions[f](float(a))
     return {"equation": "\[ "+ f + " x = " + a + " \]", "solution": "{:.2f}".format(solution)}
 
+def generate_odnorodn():
+    a = random.randint(1, 10)
+    b = random.randint(1, 10)
+    solution = math.atan(-(b/a))
+    return {"equation": "\[ "+ a + " sin x + " + b + " cos x = 0 \]", "solution": "{:.2f}".format(solution)}
+
+
+def generate_quadratic():
+    functions = {'cos': math.acos, 'sin':math.asin, 'tg':math.atan}
+    f = random.choice(list(functions.keys()))
+    a = "{:.2f}".format(random.uniform(-1,1))
+    solution = functions[f](float(a))
+    return {"equation": "\[ "+ f + " x = " + a + " \]", "solution": "{:.2f}".format(solution)}
+
+
 def generate_simple_view(request):
     return HttpResponse(json.dumps(generate_simple()))
+
+def generate_odnorodn_view(request):
+    return HttpResponse(json.dumps(generate_odnorodn()))
 
 class HomePageView(TemplateView):
     template_name = 'app/home.html'
@@ -25,12 +43,16 @@ class HomePageView(TemplateView):
 class HowToView(TemplateView):
     template_name = 'app/howto.html'
 
+class HowTo2View(TemplateView):
+    template_name = 'app/howto2.html'
 
 class TestView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if self.kwargs['difficulty'] == 0:
             self.question = generate_simple()
+        if self.kwargs['difficulty'] == 1:
+            self.question = generate_odnorodn()
         return super(TestView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
