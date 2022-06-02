@@ -16,19 +16,22 @@ def generate_simple():
     return {"equation": "\[ "+ f + " x = " + a + " \]", "solution": "{:.2f}".format(solution)}
 
 def generate_odnorodn():
-    a = random.randint(1, 10)
-    b = random.randint(1, 10)
+    while True:
+        a = random.randint(1, 10)
+        b = random.randint(1, 10)
+        if a != 0 and b != 0:
+            break
     solution = math.atan(-(b/a))
     return {"equation": "\[ "+ str(a) + " sin x + " + str(b) + " cos x = 0 \]", "solution": "{:.2f}".format(solution)}
 
 
 def generate_quadratic():
     while True:
-        a = random.randint(1, 10)
-        b = random.randint(1, 10)
-        d = random.randint(1, 10)
+        a = random.randint(-10, 10)
+        b = random.randint(-10, 10)
+        d = random.randint(-10, 10)
         discr = b**2 - 4 * a * d
-        if discr >= 0:
+        if discr >= 0 and a != 0 and b != 0 and d != 0:
             break
     solution = math.atan((-b + math.sqrt(b**2-4*a*d))/2*a)
     return {"equation": "\[ "+ str(a) + " sin^2 x + " + str(b) + " sin x cos x + " + str(d) + "cos^2 x  = 0 \]", "solution": "{:.2f}".format(solution)}
