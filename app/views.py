@@ -13,7 +13,7 @@ def generate_simple(request):
     f = random.choice(list(functions.keys()))
     a = "{:.2f}".format(random.uniform(-1,1))
     solution = functions[f](float(a))
-    return HttpResponse( json.dumps({"equation": "\[ "+ f + " = " + a + " \]", "solution": solution}))
+    return HttpResponse(json.dumps({"equation": "\[ "+ f + " = " + a + " \]", "solution": "{:.2f}".format(solution)}))
 
 class HomePageView(TemplateView):
     template_name = 'app/home.html'
