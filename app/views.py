@@ -1,7 +1,9 @@
 import random
 import math
+import json
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, DetailView
+from django.http import HttpResponse
 
 from app.models import Question, Answer
 
@@ -11,7 +13,7 @@ def generate_simple(request):
     f = random.choice(list(functions.keys()))
     a = "{:.2f}".format(random.uniform(-1,1))
     solution = functions[f](float(a))
-    return {"equation": "\[ "+ f + " = " + a + " \]", "solution": solution}
+    return HttpResponse( json.dumps({"equation": "\[ "+ f + " = " + a + " \]", "solution": solution}))
 
 class HomePageView(TemplateView):
     template_name = 'app/home.html'
