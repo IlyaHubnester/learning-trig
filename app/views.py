@@ -19,7 +19,7 @@ def generate_odnorodn():
     a = random.randint(1, 10)
     b = random.randint(1, 10)
     solution = math.atan(-(b/a))
-    return {"equation": "\[ "+ a + " sin x + " + b + " cos x = 0 \]", "solution": "{:.2f}".format(solution)}
+    return {"equation": "\[ "+ str(a) + " sin x + " + str(b) + " cos x = 0 \]", "solution": "{:.2f}".format(solution)}
 
 
 def generate_quadratic():
