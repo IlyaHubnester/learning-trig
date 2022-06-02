@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from app.views import HomePageView, HowToView, TestView, TestRightView, TestWrongView, TestRandomView, generate_simple_view, generate_odnorodn_view, HowTo2View
+from app.views import HomePageView, HowToView, TestView, TestRightView, TestWrongView, TestRandomView, generate_simple_view, generate_odnorodn_view, HowTo2View, generate_quadratic_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +29,5 @@ urlpatterns = [
     path('test/random', TestRandomView.as_view(), name='random'),
     path('generate-simple', generate_simple_view, name='generate_simple'),
     path('generate-odnorodn', generate_odnorodn_view, name='generate_odnorodn'),
+    path('generate-quadratic', generate_quadratic_view, name='generate_quadratic'),
 ]

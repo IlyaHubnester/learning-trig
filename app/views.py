@@ -23,11 +23,15 @@ def generate_odnorodn():
 
 
 def generate_quadratic():
-    functions = {'cos': math.acos, 'sin':math.asin, 'tg':math.atan}
-    f = random.choice(list(functions.keys()))
-    a = "{:.2f}".format(random.uniform(-1,1))
-    solution = functions[f](float(a))
-    return {"equation": "\[ "+ f + " x = " + a + " \]", "solution": "{:.2f}".format(solution)}
+    while True:
+        a = random.randint(1, 10)
+        b = random.randint(1, 10)
+        d = random.randint(1, 10)
+        discr = b**2 - 4 * a * d
+        if math.sqrt(discr) >= 0:
+            break
+    solution = math.atan((-b + math.sqrt(b**2-4*a*d))/2*a)
+    return {"equation": "\[ "+ str(a) + " sin^2 x + " + str(b) + " sin x cos x + " + str(d) + "cos^2 x  = 0 \]", "solution": "{:.2f}".format(solution)}
 
 
 def generate_simple_view(request):
@@ -35,6 +39,9 @@ def generate_simple_view(request):
 
 def generate_odnorodn_view(request):
     return HttpResponse(json.dumps(generate_odnorodn()))
+
+def generate_quadratic_view(request):
+    return HttpResponse(json.dumps(generate_quadratic()))
 
 class HomePageView(TemplateView):
     template_name = 'app/home.html'
