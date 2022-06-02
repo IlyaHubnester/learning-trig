@@ -53,6 +53,9 @@ class HowToView(TemplateView):
 class HowTo2View(TemplateView):
     template_name = 'app/howto2.html'
 
+class HowTo3View(TemplateView):
+    template_name = 'app/howto3.html'
+
 class TestView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
@@ -60,6 +63,8 @@ class TestView(TemplateView):
             self.question = generate_simple()
         if self.kwargs['difficulty'] == 1:
             self.question = generate_odnorodn()
+        if self.kwargs['difficulty'] == 2:
+            self.question = generate_quadratic()
         return super(TestView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
