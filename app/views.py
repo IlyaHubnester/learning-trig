@@ -1,9 +1,17 @@
 import random
+import math
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, DetailView
 
 from app.models import Question, Answer
 
+
+def generate_simple(request):
+    functions = {'cos': math.arccos, 'sin':math.arcsin, 'tg':math.arctg, 'ctg':math.arcctg}
+    f = random.choice(functions.keys())
+    a = "{:.2f}".format(random.uniform(-1,1))
+    solution = functions[f](a)
+    return {"equation": "\[ "+ f + " = " + a + " \]", "solution": solution}
 
 class HomePageView(TemplateView):
     template_name = 'app/home.html'

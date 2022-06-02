@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from app.views import HomePageView, HowToView, TestView, TestRightView, TestWrongView, TestRandomView
+from app.views import HomePageView, HowToView, TestView, TestRightView, TestWrongView, TestRandomView, generate_simple
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('test/<int:difficulty>/right', TestRightView.as_view(), name='right'),
     path('test/<int:difficulty>/wrong', TestWrongView.as_view(), name='wrong'),
     path('test/random', TestRandomView.as_view(), name='random'),
+    path('generate_simple', generate_simple, name='generate_simple'),
 ]
