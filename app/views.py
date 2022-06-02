@@ -40,7 +40,6 @@ class TestView(TemplateView):
 
     def post(self, request, **kwargs):
         answer = request.POST.get('answer')
-        answer = Answer.objects.get(id=choice)
         if answer == self.question['solution']:
             return redirect('right', difficulty=self.kwargs['difficulty'])
         else:
