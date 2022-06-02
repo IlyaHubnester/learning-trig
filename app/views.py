@@ -30,7 +30,7 @@ def generate_quadratic():
         discr = b**2 - 4 * a * d
         if discr >= 0:
             break
-    solution = math.atan((-b + math.sqrt(b**2-4*a*d))/2*a)
+    solution = math.atan((-b - math.sqrt(b**2-4*a*d))/2*a)
     return {"equation": "\[ "+ str(a) + " sin^2 x + " + str(b) + " sin x cos x + " + str(d) + "cos^2 x  = 0 \]", "solution": "{:.2f}".format(solution)}
 
 
