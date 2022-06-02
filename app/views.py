@@ -42,6 +42,8 @@ class TestView(TemplateView):
 
     def post(self, request, **kwargs):
         answer = request.POST.get('answer')
+        print(self.solution)
+        print(answer)
         if answer == self.solution:
             return redirect('right', difficulty=self.kwargs['difficulty'])
         else:
