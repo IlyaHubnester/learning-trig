@@ -8,12 +8,15 @@ from django.http import HttpResponse
 from app.models import Question, Answer
 
 
-def generate_simple(request):
+def generate_simple():
     functions = {'cos': math.acos, 'sin':math.asin, 'tg':math.atan}
     f = random.choice(list(functions.keys()))
     a = "{:.2f}".format(random.uniform(-1,1))
     solution = functions[f](float(a))
-    return HttpResponse(json.dumps({"equation": "\[ "+ f + " = " + a + " \]", "solution": "{:.2f}".format(solution)}))
+    return {"equation": "\[ "+ f + " x = " + a + " \]", "solution": "{:.2f}".format(solution)}
+
+def generate_simple_view(request):
+    return HttpResponse(json.dumps(generate_simple()))
 
 class HomePageView(TemplateView):
     template_name = 'app/home.html'
@@ -23,21 +26,22 @@ class HowToView(TemplateView):
     template_name = 'app/howto.html'
 
 
-class TestView(DetailView):
-    model = Question
+class TestView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
-        self.object = Question.objects.filter(difficulty=self.kwargs['difficulty']).order_by('?')[:1]
-
+        if self.kwargs['difficulty'] == 0:
+            self.question = generate_simple()
         return super(TestView, self).dispatch(request, *args, **kwargs)
 
-    def get_object(self):
-        return get_object_or_404(self.object)
+    def get_context_data(self, **kwargs):
+        context = super(TestView, self).get_context_data(**kwargs)
+        context['equation'] = self.question['equation']
+        return context
 
     def post(self, request, **kwargs):
-        choice = request.POST.get('choice')
+        answer = request.POST.get('answer')
         answer = Answer.objects.get(id=choice)
-        if answer.correct:
+        if answer == self.question['solution']:
             return redirect('right', difficulty=self.kwargs['difficulty'])
         else:
             return redirect('wrong', difficulty=self.kwargs['difficulty'])
