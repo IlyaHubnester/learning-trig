@@ -31,6 +31,7 @@ class TestView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         if self.kwargs['difficulty'] == 0:
             self.question = generate_simple()
+        self.solution = self.question['solution']
         return super(TestView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -41,7 +42,7 @@ class TestView(TemplateView):
 
     def post(self, request, **kwargs):
         answer = request.POST.get('answer')
-        if answer == self.context['solution']:
+        if answer == self.solution:
             return redirect('right', difficulty=self.kwargs['difficulty'])
         else:
             return redirect('wrong', difficulty=self.kwargs['difficulty'])
