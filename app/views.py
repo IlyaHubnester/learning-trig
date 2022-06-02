@@ -29,9 +29,8 @@ class HowToView(TemplateView):
 class TestView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
-        if self.kwargs['difficulty'] == 0 and request.POST == None:
+        if self.kwargs['difficulty'] == 0:
             self.question = generate_simple()
-            self.solution = self.question['solution']
         return super(TestView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -42,6 +41,7 @@ class TestView(TemplateView):
 
     def post(self, request, **kwargs):
         answer = request.POST.get('answer')
+        solution = request.POST.get('solution')
         print(self.solution)
         print(answer)
         if answer == self.solution:
