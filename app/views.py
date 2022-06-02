@@ -10,7 +10,7 @@ def generate_simple(request):
     functions = {'cos': math.acos, 'sin':math.asin, 'tg':math.atan}
     f = random.choice(list(functions.keys()))
     a = "{:.2f}".format(random.uniform(-1,1))
-    solution = functions[f](a)
+    solution = functions[f](float(a))
     return {"equation": "\[ "+ f + " = " + a + " \]", "solution": solution}
 
 class HomePageView(TemplateView):
