@@ -7,7 +7,7 @@ from app.models import Question, Answer
 
 
 def generate_simple(request):
-    functions = {'cos': math.arccos, 'sin':math.arcsin, 'tg':math.arctg, 'ctg':math.arcctg}
+    functions = {'cos': math.acos, 'sin':math.asin, 'tg':math.atan}
     f = random.choice(functions.keys())
     a = "{:.2f}".format(random.uniform(-1,1))
     solution = functions[f](a)
