@@ -17,8 +17,8 @@ def generate_simple():
 
 def generate_odnorodn():
     while True:
-        a = random.randint(1, 10)
-        b = random.randint(1, 10)
+        a = random.randint(-10, 10)
+        b = random.randint(-10, 10)
         if a != 0 and b != 0:
             break
     solution = math.atan(-(b/a))
