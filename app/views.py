@@ -31,13 +31,13 @@ class TestView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         if self.kwargs['difficulty'] == 0:
             self.question = generate_simple()
-        self.solution = self.question['solution']
         return super(TestView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(TestView, self).get_context_data(**kwargs)
         context['equation'] = self.question['equation']
         context['solution'] = self.question['solution']
+        self.solution = self.question['solution']
         return context
 
     def post(self, request, **kwargs):
