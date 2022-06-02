@@ -36,11 +36,12 @@ class TestView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(TestView, self).get_context_data(**kwargs)
         context['equation'] = self.question['equation']
+        context['solution'] = self.question['solution']
         return context
 
     def post(self, request, **kwargs):
         answer = request.POST.get('answer')
-        if answer == self.question['solution']:
+        if answer == self.context['solution']:
             return redirect('right', difficulty=self.kwargs['difficulty'])
         else:
             return redirect('wrong', difficulty=self.kwargs['difficulty'])
