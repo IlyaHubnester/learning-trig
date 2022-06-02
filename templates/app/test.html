@@ -9,7 +9,7 @@
                 {% csrf_token %}
                 {{ equation }}
                 <p>Округлите ответ до второй цифры после запятой: </p>
-                <input id="answer" class="form-control">
+                <input id="answer" name="answer" class="form-control">
                 <input class="btn btn-primary" type="submit" value="Ответить">
             </form>
         </div>
